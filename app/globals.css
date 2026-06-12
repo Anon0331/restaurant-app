@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Lora', serif;
+}
+
+@layer base {
+  body {
+    background-color: #faf6ef;
+    color: #1a1208;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-ink text-paper px-5 py-2.5 rounded-full text-sm font-medium
+           hover:bg-amber-700 transition-colors duration-200;
+  }
+  .btn-outline {
+    @apply border border-ink/30 text-ink px-5 py-2.5 rounded-full text-sm
+           hover:border-ink/60 transition-colors duration-200;
+  }
+  .card {
+    @apply bg-white rounded-2xl border border-amber-100 shadow-sm overflow-hidden;
+  }
+  .input {
+    @apply w-full border border-ink/20 rounded-xl px-4 py-2.5 text-sm
+           bg-white focus:outline-none focus:border-amber-600 transition-colors;
+  }
+  .star {
+    @apply text-amber-400 text-xl;
+  }
+}
+
+/* Grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d97706; border-radius: 3px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.4s ease-out forwards; }
